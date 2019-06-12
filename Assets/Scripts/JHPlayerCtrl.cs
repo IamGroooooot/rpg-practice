@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(JHPlayerMoter))]
 public class JHPlayerCtrl : MonoBehaviour
@@ -18,6 +19,7 @@ public class JHPlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -30,6 +32,8 @@ public class JHPlayerCtrl : MonoBehaviour
                 motor.MoveToPoint(hit.point);
                 // Stop Foucusing obj
             }
+            GetComponent<NavMeshAgent>().velocity = (new Vector3(GetComponent<NavMeshAgent>().velocity.x + 10f, GetComponent<NavMeshAgent>().velocity.y+0f, GetComponent<NavMeshAgent>().velocity.z+0));
+
         }
     }
 }
